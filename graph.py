@@ -121,7 +121,7 @@ class Graph:
 
     def inadmissible_heuristic(self, target_node: node.Node) -> int:
         """
-        Estimated cost is the sum of containers matching final_state
+        Estimated cost is the sum of containers not matching from final_state
 
         Returns
         -------
@@ -175,8 +175,6 @@ class Graph:
         while not missing_colors_queue.empty():
             ms_color = missing_colors_queue.get()
             resulted_colors = color.ColorSrv().deconstruct_color(ms_color)
-            if resulted_colors == -1:
-                return INFINITY
             estimation += 1
             for new_color in resulted_colors:
                 if new_color not in target_state_colors:

@@ -1,3 +1,5 @@
+# documentatie: https://docs.google.com/document/d/1cK6_WphKj1ZMaHIuswtB2_ANYM1SmVfv-Z74e_s8pQ0/edit?usp=sharing
+
 import os
 import sys
 from math import ceil
@@ -280,13 +282,14 @@ if __name__ == "__main__":
 
         graph = Graph(final_state, init_state, n_sol)
 
+        ucs(f_out, graph, n_sol, timeout_arg)
+
         for h_code in range(4):
             output = graph.set_heuristic(h_code)
             f_out.write(output)
-            ida_star(f_out, graph, n_sol, timeout_arg)
             a_star(f_out, graph, n_sol, timeout_arg)
             a_star_opt(f_out, graph, n_sol, timeout_arg)
-            ucs(f_out, graph, n_sol, timeout_arg)
+            ida_star(f_out, graph, n_sol, timeout_arg)
             f_out.write("\n\n#####################################################################################\n\n")
 
         colorSrv.reset()
